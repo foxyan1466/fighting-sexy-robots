@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БОЕВЫЕ SEXY РОБОТЫ // ОФИЦИАЛЬНЫЙ СУПЕР-ХАБ</title>
+    <style>
+        /* Общие панк-рок стили */
+        body {
+            background-color: #050505;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 1. ЭКРАН ЗАГРУЗКИ / ПАСХАЛКА */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .terminal-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ff0055;
+            text-shadow: 0 0 5px #ff0055;
+        }
+
+        .enter-btn {
+            background: transparent;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .enter-btn:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 25px #00ff00;
+        }
+
+        /* 2. ОСНОВНОЙ КОНТЕНТ (СКРЫТ ДО КЛИКА) */
+        #main-content {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        /* Ебейший глитч-заголовок */
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 3px 3px #ff0055, -3px -3px #00ff00;
+            margin-top: 40px;
+            letter-spacing: 2px;
+        }
+
+        .sub-tag {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        /* 3. КАСТОМНЫЙ WINAMP-ПЛЕЕР */
+        .player {
+            background-color: #111;
+            border: 2px solid #ff0055;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 6px 6px 0px #00ff00;
+            text-align: left;
+        }
+
+        .player-header {
+            background-color: #ff0055;
+            color: #000;
+            padding: 4px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        .progress-bg {
+            background-color: #222;
+            border: 1px solid #00ff00;
+            height: 12px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .progress-fill {
+            background-color: #00ff00;
+            width: 35%;
+            height: 100%;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .ctrl-btn {
+            background: transparent;
+            border: 1px solid #ff0055;
+            color: #ff0055;
+            padding: 5px 15px;
+            font-family: inherit;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .ctrl-btn:hover {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+
+        /* 4. БЛОК ССЫЛОК И СОЦСЕТЕЙ */
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .link-card {
+            display: block;
+            border: 2px dashed #00ff00;
+            padding: 15px;
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            background-color: #ff0055;
+            color: #000;
+            border-color: #ff0055;
+            transform: scale(1.02);
+        }
+
+        /* Бегущая строка в стиле Web 1.0 */
+        .ticker {
+            width: 100%;
+            background-color: #111;
+            padding: 10px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            color: #ff0055;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ЭКРАН ВХОДА (ПАСХАЛКА) -->
+    <div id="intro-screen">
+        <div class="terminal-text">> ИНИЦИАЛИЗАЦИЯ ИНТЕРФЕЙСА...</div>
+        <button class="enter-btn" onclick="activateSystem()">[ ЗАЛЕЗЬ В РОБОТА ]</button>
+    </div>
+
+    <!-- 2. ОСНОВНОЙ САЙТ -->
+    <div id="main-content">
+        <h1>Боевые sexy роботы</h1>
+        <div class="sub-tag">ONE-MAN BAND // VLADIVOSTOK PUNK ROCK</div>
+
+        <!-- 3. РЕТРО ПЛЕЕР -->
+        <div class="player">
+            <div class="player-header">BSR_PLAYER.EXE (АКТУАЛЬНЫЕ РЕЛИЗЫ)</div>
+            <div class="track-title">▶ Я вчера тебя кхм...</div>
+            <div class="progress-bg">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="controls">
+                <button class="ctrl-btn" onclick="alert('Воспроизведение: Я вчера тебя кхм...')">PLAY</button>
+                <button class="ctrl-btn" onclick="alert('Воспроизведение: Я умер, ты (не) обиделась')">NEXT TRACK</button>
+            </div>
+        </div>
+
+        <!-- 4. МУЛЬТИССЫЛКА / ХАБ -->
+        <div class="links-section">
+            <a href="https://t.me" target="_blank" class="link-card">✈ TELEGRAM КАНАЛ</a>
+            <a href="https://vk.com" target="_blank" class="link-card">💬 СООБЩЕСТВО ВКОНТАКТЕ</a>
+            <a href="https://yandex.ru" target="_blank" class="link-card">🎵 ЯНДЕКС МУЗЫКА</a>
+            <a href="https://apple.com" target="_blank" class="link-card">🍎 APPLE MUSIC</a>
+        </div>
+    </div>
+
+    <!-- БЕГУЩАЯ СТРОКА -->
+    <div class="ticker">
+        <marquee scrollamount="6">Я УМЕР ТЫ НЕ ОБИДЕЛАСЬ // 1998 // ПОЛЮБИ СЕБЯ РУКОЙ // ЛЮБОВЬ СМЕРТЬ И РОБОТЫ</marquee>
+    </div>
+
+    <!-- ЛОГИКА АКТИВАЦИИ -->
+    <script>
+        function activateSystem() {
+            const intro = document.getElementById('intro-screen');
+            const main = document.getElementById('main-content');
+            
+            // Плавное исчезновение заставки
+            intro.style.opacity = '0';
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                main.style.display = 'block';
+                // Плавное появление сайта
+                setTimeout(() => {
+                    main.style.opacity = '1';
+                }, 50);
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
