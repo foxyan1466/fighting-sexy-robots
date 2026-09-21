@@ -118,12 +118,14 @@
             height: 12px;
             margin-bottom: 15px;
             position: relative;
+            cursor: pointer;
         }
 
         .progress-fill {
             background-color: #00ff00;
-            width: 55%;
+            width: 0%;
             height: 100%;
+            transition: width 0.1s linear;
         }
 
         .controls {
@@ -139,6 +141,7 @@
             font-family: inherit;
             cursor: pointer;
             font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         .ctrl-btn:hover {
@@ -198,24 +201,27 @@
         <h1>Боевые sexy роботы</h1>
         <div class="sub-tag">ONE-MAN BAND // VLADIVOSTOK PUNK ROCK</div>
 
-        <!-- 3. РЕТРО ПЛЕЕР -->
+        <!-- 3. РЕТРО ПЛЕЕР С ЖИВЫМ ЗВУКОМ -->
         <div class="player">
             <div class="player-header">BSR_PLAYER.EXE (АКТУАЛЬНЫЕ РЕЛИЗЫ)</div>
-            <div class="track-title">▶ Я вчера тебя кхм...</div>
-            <div class="progress-bg">
-                <div class="progress-fill"></div>
+            <div class="track-title" id="display-track">▶ Выберите трек</div>
+            <div class="progress-bg" id="progress-container">
+                <div class="progress-fill" id="progress-bar"></div>
             </div>
             <div class="controls">
-                <button class="ctrl-btn" onclick="alert('Воспроизведение: Я вчера тебя кхм...')">PLAY</button>
-                <button class="ctrl-btn" onclick="alert('Воспроизведение: Я умер, ты (не) обиделась')">NEXT TRACK</button>
+                <button class="ctrl-btn" id="play-pause-btn" onclick="togglePlay()">PLAY</button>
+                <button class="ctrl-btn" onclick="nextTrack()">NEXT TRACK</button>
             </div>
         </div>
 
-        <!-- 4. ОБНОВЛЕННАЯ МУЛЬТИССЫЛКА / ХАБ -->
+        <!-- Скрытый тег аудио -->
+        <audio id="audio-element"></audio>
+
+        <!-- 4. МУЛЬТИССЫЛКА -->
         <div class="links-section">
             <a href="https://t.me/fightingsexyrobots" target="_blank" class="link-card">✈ TELEGRAM КАНАЛ</a>
-            <a href="https://music.yandex.ru/artist/21370683" target="_blank" class="link-card">🎵 ЯНДЕКС МУЗЫКа</a>
-            <a href="https://music.apple.com/ru/artist/боевые-sexy-роботы/1725444214" target="_blank" class="link-card">🍎 APPLE MUSIC</a>
+            <a href="https://music.yandex.ru/artist/21370683" target="_blank" class="link-card">🎵 ЯНДЕКС МУЗЫКА</a>
+            <a href="https://music.apple.com/ru/artist/%D0%B1%D0%BE%D0%B5%D0%B2%D1%8B%D0%B5-sexy-%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D1%8B/1725444214" target="_blank" class="link-card">🍎 APPLE MUSIC</a>
         </div>
     </div>
 
@@ -224,13 +230,68 @@
         <marquee scrollamount="6">Я УМЕР ТЫ НЕ ОБИДЕЛАСЬ // 1998 // ПОЛЮБИ СЕБЯ РУКОЙ // ЛЮБОВЬ СМЕРТЬ И РОБОТЫ // Я ВЧЕРА ТЕБЯ КХМ</marquee>
     </div>
 
-    <!-- ЛОГИКА АКТИВАЦИИ -->
+    <!-- ЛОГИКА АКТИВАЦИИ И ПЛЕЕРА -->
     <script>
+        // Список треков и официальных стриминг-превью аудиофайлов
+        const playlist = [
+            {
+                title: "Я вчера тебя кхм...",
+                url: "https://apple.com"
+            },
+            {
+                title: "Я умер, ты (не) обиделась",
+                url: "https://apple.com"
+            }
+        ];
+
+        let currentTrackIndex = 0;
+        const audio = document.getElementById('audio-element');
+        const playBtn = document.getElementById('play-pause-btn');
+        const trackTitle = document.getElementById('display-track');
+        const progressBar = document.getElementById('progress-bar');
+
+        // Инициализация первого трека
+        function initPlayer() {
+            audio.src = playlist[currentTrackIndex].url;
+            trackTitle.innerText = "▶ " + playlist[currentTrackIndex].title;
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerText = "PAUSE";
+            } else {
+                audio.pause();
+                playBtn.innerText = "PLAY";
+            }
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            audio.src = playlist[currentTrackIndex].url;
+            trackTitle.innerText = "▶ " + playlist[currentTrackIndex].title;
+            audio.play();
+            playBtn.innerText = "PAUSE";
+        }
+
+        // Обновление полосы прогресса
+        audio.addEventListener('timeupdate', () => {
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percentage + "%";
+        });
+
+        // Когда трек закончился - включаем следующий
+        audio.addEventListener('ended', () => {
+            nextTrack();
+        });
+
+        // Логика кнопки входа
         function activateSystem() {
             const intro = document.getElementById('intro-screen');
             const main = document.getElementById('main-content');
             
             intro.style.opacity = '0';
+            initPlayer(); // Подгружаем плеер при входе
             
             setTimeout(() => {
                 intro.style.display = 'none';
@@ -242,10 +303,10 @@
         }
     </script>
 
-<!-- Yandex.Metrika counter -->
+    <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
         m[i].l=1*new Date();
         for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
         k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
@@ -255,5 +316,6 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/112869516" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
 </body>
 </html>
