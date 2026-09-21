@@ -61,7 +61,7 @@
             box-shadow: 0 0 25px #00ff00;
         }
 
-        /* 2. ОСНОВНОЙ КОНТЕНТ (СКРЫТ ДО КЛИКА) */
+        /* 2. ОСНОВНОЙ КОНТЕНТ */
         #main-content {
             display: none;
             width: 100%;
@@ -122,7 +122,7 @@
 
         .progress-fill {
             background-color: #00ff00;
-            width: 35%;
+            width: 55%;
             height: 100%;
         }
 
@@ -211,18 +211,17 @@
             </div>
         </div>
 
-        <!-- 4. МУЛЬТИССЫЛКА / ХАБ -->
+        <!-- 4. ОБНОВЛЕННАЯ МУЛЬТИССЫЛКА / ХАБ -->
         <div class="links-section">
-            <a href="https://t.me" target="_blank" class="link-card">✈ TELEGRAM КАНАЛ</a>
-            <a href="https://vk.com" target="_blank" class="link-card">💬 СООБЩЕСТВО ВКОНТАКТЕ</a>
-            <a href="https://yandex.ru" target="_blank" class="link-card">🎵 ЯНДЕКС МУЗЫКА</a>
-            <a href="https://apple.com" target="_blank" class="link-card">🍎 APPLE MUSIC</a>
+            <a href="https://t.me/fightingsexyrobots" target="_blank" class="link-card">✈ TELEGRAM КАНАЛ</a>
+            <a href="https://music.yandex.ru/artist/21370683" target="_blank" class="link-card">🎵 ЯНДЕКС МУЗЫКа</a>
+            <a href="https://music.apple.com/ru/artist/боевые-sexy-роботы/1725444214" target="_blank" class="link-card">🍎 APPLE MUSIC</a>
         </div>
     </div>
 
     <!-- БЕГУЩАЯ СТРОКА -->
     <div class="ticker">
-        <marquee scrollamount="6">Я УМЕР ТЫ НЕ ОБИДЕЛАСЬ // 1998 // ПОЛЮБИ СЕБЯ РУКОЙ // ЛЮБОВЬ СМЕРТЬ И РОБОТЫ</marquee>
+        <marquee scrollamount="6">Я УМЕР ТЫ НЕ ОБИДЕЛАСЬ // 1998 // ПОЛЮБИ СЕБЯ РУКОЙ // ЛЮБОВЬ СМЕРТЬ И РОБОТЫ // Я ВЧЕРА ТЕБЯ КХМ</marquee>
     </div>
 
     <!-- ЛОГИКА АКТИВАЦИИ -->
@@ -231,13 +230,11 @@
             const intro = document.getElementById('intro-screen');
             const main = document.getElementById('main-content');
             
-            // Плавное исчезновение заставки
             intro.style.opacity = '0';
             
             setTimeout(() => {
                 intro.style.display = 'none';
                 main.style.display = 'block';
-                // Плавное появление сайта
                 setTimeout(() => {
                     main.style.opacity = '1';
                 }, 50);
